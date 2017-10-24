@@ -29,4 +29,14 @@ public class Bridge {
         }
     }
     
+    void moveBridge(){
+        
+    }
+    
+    void deleteBridge(){
+        if (height >= 0){
+            height = 0;
+        }
+    }
+    
 }
