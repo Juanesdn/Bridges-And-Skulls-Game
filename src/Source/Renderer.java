@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import java.util.Random;
 
@@ -21,9 +23,15 @@ public class Renderer extends Canvas implements ActionListener, KeyListener {
     Terrain2 terrain2;
     Character character;
     Bridge bridge;
+    SpriteSheet sheet;
+    Animator characterAnimator;
     
     Timer timer = new Timer(20, this);
     Random rnd = new Random();
+    BufferedImage img;
+    BufferedImage static_char;
+    
+    ArrayList<BufferedImage> sprites = new ArrayList<BufferedImage>();
     
     int height, frame_width, width, width2, bridgeSize, scalingSpeed, scalingHeight;
     int characterPosition, distance, angle, scalingDrop, fase;
@@ -55,8 +63,20 @@ public class Renderer extends Canvas implements ActionListener, KeyListener {
         
         terrain = new Terrain(0, height, width, height);
         terrain2 = new Terrain2((frame_width/2+rnd.nextInt(frame_width-200)), height, width2, height);
-        character = new Character(characterPosition, (height - 30) + scalingDrop, 30, 30, moving, false);
+        character = new Character(characterPosition, (height - 50) + scalingDrop, 30, 30, moving, false);
         bridge = new Bridge(0, scalingHeight, 10, bridgeSize);
+        
+        img = ImageLoader.loadImage("/Sprites/characterMoving.png");
+        static_char = ImageLoader.loadImage("/Sprites/char_not_moving.png");
+        sheet = new SpriteSheet(img);
+        
+        sprites.add(sheet.grabSprite(0, 0, 32, 32));
+        sprites.add(sheet.grabSprite(32, 0, 32, 32));
+        sprites.add(sheet.grabSprite(0, 32, 32, 32));
+        
+        characterAnimator = new Animator(sprites);
+        characterAnimator.setSpeed(100);
+        characterAnimator.start();
         
         timer.start();
         
@@ -70,6 +90,7 @@ public class Renderer extends Canvas implements ActionListener, KeyListener {
         Graphics2D g2d = (Graphics2D)g;
         
         if (fase == 0){
+            
             
             // Terreno
             g.setColor(Color.black);
@@ -87,7 +108,19 @@ public class Renderer extends Canvas implements ActionListener, KeyListener {
             }
 
             g.setColor(Color.RED);
-            g.fillOval(character.x, character.y, character.width, character.height);
+            if (character.moving){
+                
+                if (characterAnimator != null){
+                    
+                    characterAnimator.update(System.currentTimeMillis());
+                    g.drawImage(characterAnimator.sprite, character.x, character.y, 50, 50, null);
+                }
+            }else{
+                g.drawImage(static_char, character.x, character.y, 50, 50, null);
+            }
+            
+                
+            
 
 
             // Puente
