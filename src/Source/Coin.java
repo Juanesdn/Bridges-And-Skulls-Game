@@ -9,28 +9,24 @@ package Source;
  *
  * @author Juanes
  */
-public class Terrain2 {
+public class Coin {
     
     int x, y, width, height;
     
-    public Terrain2 (int _x, int _y, int _width, int _height){
+    public Coin(int _x, int _y, int _width, int _height){
         
         x = _x;
         y = _y;
         width = _width;
         height = _height;
-        
     }
     
-    void moveTerrain(int frameWidth){
+    void generateCoin(){
         /**
-         * Mueve el terreno en el cambio de fase
+         * Genera el coin aumentando su tamaño.
          */
-        if (x >= frameWidth/2){
-            x--;
-        }else {
-            Renderer.cambiandoFase = false;
-        }
+        width = 50;
+        height = 50;
     }
     
 }

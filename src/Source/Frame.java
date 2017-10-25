@@ -10,7 +10,7 @@ public class Frame extends JFrame{
         setSize(600, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(true);
-        add(new Renderer(getWidth(), getHeight(), 0));
+        add(new Renderer(getWidth(), getHeight()));
         setVisible(true);
         
     }

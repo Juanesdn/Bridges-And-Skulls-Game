@@ -52,10 +52,33 @@ public class Character {
     }
     
     void moveCharacter(int frame_width){
+        /**
+         * Mueve el personaje hacia la siguiente fase
+         */
         
         if (x >= frame_width/2 ){
             x--;
             
+        }
+        
+    }
+    
+    void moveUp(){
+        /**
+         * Mueve el personaje hacia arriba
+         */
+        if (y >= 0){
+            y -= 5;
+        }
+    }
+    
+    void moveDown(int terrainHeight){
+        /**
+         * Mueve el personaje hacia abajo
+         */
+        
+        if (y <= terrainHeight){
+            y += 5;
         }
         
     }

@@ -23,17 +23,19 @@ public class Bridge {
     }
     
     void increaseSize(int bridgeSize, int maxHeight){
-        if (bridgeSize <= maxHeight){
+        /**
+         * Aumenta el tamaño del puente.
+         */
+        if (height <= maxHeight){
             height += 5;
             y -= 5;
         }
     }
     
-    void moveBridge(){
-        
-    }
-    
     void deleteBridge(){
+        /**
+         * Borra el puente.
+         */
         if (height >= 0){
             height = 0;
         }
