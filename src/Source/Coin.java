@@ -21,22 +21,22 @@ public class Coin {
         height = _height;
     }
     
-    void generateCoin(boolean aviable){
+    void generateCoin(boolean available){
         /**
          * Genera el coin aumentando su tamaño.
          */
-        if (aviable == true){
-            System.out.println(aviable);
+        if (available == true){
+            System.out.println(available);
             width = 50;
             height = 50;
         }
     }
     
-    void deleteCoin(int CharacterPosition, boolean aviable){
+    void deleteCoin(int CharacterPosition, boolean available){
         
        if (CharacterPosition > y - 10 && CharacterPosition < y + 10){
            System.out.println("entro");
-            aviable = false;
+            available = false;
        }
     }    
     
