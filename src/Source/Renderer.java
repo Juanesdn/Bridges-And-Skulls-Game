@@ -205,6 +205,7 @@ public class Renderer extends Canvas implements ActionListener, KeyListener {
                 
                 if (cambiandoFase == false){
                     coin.generateCoin();
+                    coin.deleteCoin(character.y);
                     
                 }
                 
